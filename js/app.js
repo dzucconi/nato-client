@@ -27,7 +27,7 @@
     }
   };
 
-  var Phonemes = {
+  var NATO = {
     start: function() {
       var periodicUpdate = _.debounce(this.update, 150);
 
@@ -35,11 +35,11 @@
     },
 
     wrap: function(words) {
-      return _.map(words, function(word){ return "<span class='word'>" + word + "</span>"; });
+      return _.map(words, function(word) { return "<span class='word'>" + word.join(" ") + "</span>"; });
     },
 
     update: function() {
-      var context = Phonemes,
+      var context = NATO,
           message = context.$editor.val();
 
       if (message.trim() == "") {
@@ -67,15 +67,15 @@
     },
 
     initialize: function() {
-      this.apiRoot = "http://api.corrasable.com/phonemes";
+      this.apiRoot = "http://api.corrasable.com/nato";
       this.$editor = $("#editor");
       this.$output = $("#output");
       this.wordSeparator = " ";
 
       Loader.initialize();
-      Phonemes.start();
+      NATO.start();
     }
   };
 
-  $(function() { Phonemes.initialize(); });
+  $(function() { NATO.initialize(); });
 }());
